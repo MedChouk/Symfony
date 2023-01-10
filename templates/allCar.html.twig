@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}AllCars{% endblock %}
+
+{% block body %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+      <li class="breadcrumb-item active" aria-current="page">List Voitures</li>
+    </ol>
+    <div class="container">
+      {% for message in app.flashes('notice') %}
+      <div class="alert p-3 mb-2 bg-light text-success border border-success" role="alert">
+          {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="container">
+      <div class="row" style="width: 100%">
+        <div class="col">
+
+          <div class="progress m-1">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+          </div>
+          <div class="progress m-1">
+            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 57%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100">57%</div>
+          </div>
+          <div class="progress m-1">
+            <div class="progress-bar progress-bar-striped bg-danger text-center" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100">28%</div>
+          </div>
+        </div>
+        <div class="col">
+          <a href="{{path("addCar")}}" type="button" class="btn btn-outline-info m-2 align-center btn-lg btn-block">Ajouter un voiture</a>
+        </div>
+      </div>
+    </div>
+
+</nav>
+<table class="table table-striped m-3">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#ID</th>
+        <th scope="col">Marque</th>
+        <th scope="col">Coleur</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for car in cars %}  
+      <tr>
+          <th  scope="row">{{car.id}}</th>
+          <td>{{car.marque}}</td>
+          <td>{{car.couleur}}</td>
+          <td>{{car.prix}}</td>
+          <td>
+              <a href="{{path("details",{id:car.id})}}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+              <a href="{{path("update",{id:car.id})}}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+              <a href="{{path("delete",{id:car.id})}}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+
+          </td>
+      </tr>
+  {% endfor  %}
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+</nav>
+{% endblock %}

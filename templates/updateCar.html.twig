@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}UpdateCar{% endblock %}
+
+{% block body %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+      <li class="breadcrumb-item"><a href="#">List Voitures</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Modifier une voiture</li>
+    </ol>
+</nav>
+
+<div class="container">
+
+        <div>
+            {{ form_start(form) }}
+            
+            <h1 class="text-center font-weight-light">Modifier une voiture </h1>
+            {{ form_label(form.marque) }}
+            {{ form_widget(form.marque,{'attr':{'class':'form-control is-valid'}}) }}
+            <div class="valid-feedback">
+                Remplir tout les champ SVP !
+            </div>
+
+            <div class="inupt-group mb-3">
+                
+            </div>
+                        
+            <label for="basic-url">Couleur</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3"> @multicolor </span>
+                </div>
+                {{ form_widget(form.couleur,{'attr':{'class':'form-control'}}) }}
+            </div>
+            
+            
+            <label for="basic-url">Prix</label>
+            <div class="input-group mb-3">
+                {{ form_widget(form.prix,{'attr':{'class':'form-control'}}) }}
+                <div class="input-group-append">
+                  <span class="input-group-text">.00</span>
+                  <span class="input-group-text">$</span>
+                </div>
+            </div>
+    
+            <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                <input type="checkbox" class="custom-control-input" id="customControlInline">
+                <label class="custom-control-label" for="customControlInline">Rappelez-vous mon prix </label>
+            </div>
+            
+            <div class="container">
+                <div class="row" style="width: 100%">
+                <div class="col">
+                    
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-dark m-2 align-center btn-lg btn-block my-1">Modifier</button>
+                </div>
+                </div>
+
+            </div>
+
+            {{ form_end(form) }}   
+        </div>
+
+    
+</div>
+
+{% endblock %}

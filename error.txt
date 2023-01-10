@@ -1,0 +1,24 @@
+    afficher les donner arivee bd en format json 
+    
+    /**
+     * @Route("/update/{id}", name="update")
+     */
+
+    public function update($id, EntityManagerInterface $em){
+ 
+        $rep = $em->getRepository("App\Entity\Voiture");
+        $car = $rep->find($id);
+
+        if ($car instanceof Voiture) {
+
+            $car->setMarque('Marque modifiée ');
+            $car->setCouleur('Couleur modifiée ');
+            $car->setPrix('Prix modifiée ');
+
+            $em->persist($car);
+            $em->flush();
+            return new JsonResponse(array("marque" => $car->getMarque(),"couleur" => $car->getCouleur(),"prix" => $car->getPrix()));
+        }else {
+            return new JsonResponse(array("marque" => "failed!!!"));
+        }
+    }
